@@ -14,9 +14,8 @@ object game_settings {
     val veryHard : Array[String] = words.filter(_.length > 11).filter(_.length <= 15)
 
     //User Selecting difficulty of game
-    println("*********************** " + "\n" + "Please Select the level of difficulty you wish to play: " + "\n"
-      + " 1 is Very Easy" + "\n" + " 2 is Easy" + "\n" + " 3 is Average" + "\n" + " 4 is Hard" + "\n"
-      + " 5 is Very Hard" + "\n" + "*********************** ")
+    println("Please Select the level of difficulty you wish to play: " + "\n" + " 1 is Very Easy" + "\n"
+      + " 2 is Easy" + "\n" + " 3 is Average" + "\n" + " 4 is Hard" + "\n" + " 5 is Very Hard")
     val chosenDifficulty = scala.io.StdIn.readLine(">>>")
     chosenDifficulty match {
       case "1" => game(veryEasy,5)
@@ -27,39 +26,32 @@ object game_settings {
     }
     def game (difficulty: Array[String], numOfWords: Int): Unit = {
     val play = Random.shuffle(difficulty.toList).take(numOfWords)
-      println(play.map(_.mkString("")).mkString("\n")
-        + "\n" + "*********************** " + "\n")
+      println(play.map(_.mkString("")).mkString("\n"))
       // Randomly selecting the password
       val password = Random.shuffle(play).head
       println("Select the correct password from above. You get 4 attempts at guessing the correct one.")
-      println("Please enter your Attempt 1 below: ")
-      val attempt1 = scala.io.StdIn.readLine(">>>")
+      val attempt1 = scala.io.StdIn.readLine("Attempt1: ")
       if (attempt1 == password) {
         println("You have Guessed the Password Correctly")
-      }
-      else {
+      } else {
         val matchedLetters = attempt1 intersect password
-        println(matchedLetters)
         println("Incorrect guess" + " Matched on " + matchedLetters.length + " out of " + password.length)
-        val attempt2 = scala.io.StdIn.readLine(">>>")
+        val attempt2 = scala.io.StdIn.readLine("Attempt2: ")
         if (attempt2 == password){
           println("You have Guessed the Password Correctly")
-        }
-        else {
+        } else {
           val matchedLetters2 = attempt2 intersect password
           println("Incorrect guess" + " Matched on " + matchedLetters2.length + " out of " + password.length)
-          val attempt3 = scala.io.StdIn.readLine(">>>")
+          val attempt3 = scala.io.StdIn.readLine("Attempt3: ")
           if (attempt3 == password){
             println("You have Guessed the Password Correctly")
-          }
-          else {
+          } else {
             val matchedLetters3 = attempt3 intersect password
             println("Incorrect guess" + " Matched on " + matchedLetters3.length + " out of " + password.length)
-            val attempt4 = scala.io.StdIn.readLine(">>>")
+            val attempt4 = scala.io.StdIn.readLine("Attempt4: ")
             if (attempt4 == password){
               println("You have Guessed the Password Correctly")
-            }
-            else {
+            } else {
               val matchedLetters3 = attempt4 intersect password
               println("Incorrect guess" + " Matched on " + matchedLetters3.length + " out of " + password.length)
               println("This is the password " + password)
@@ -67,8 +59,6 @@ object game_settings {
           }
         }
       }
-
     }
-
   }
 }
